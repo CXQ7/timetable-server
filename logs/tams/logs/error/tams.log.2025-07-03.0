@@ -1,4 +1,4 @@
-2025-07-04 11:08:39.027 HikariPool.throwPoolInitializationException:594 - HikariPool-1 - Exception during pool initialization.
+2025-07-03 11:35:05.639 HikariPool.throwPoolInitializationException:594 - HikariPool-1 - Exception during pool initialization.
 com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
 
 The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
@@ -88,7 +88,7 @@ Caused by: java.net.ConnectException: Connection timed out: no further informati
 	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:153)
 	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:63)
 	... 59 common frames omitted
-2025-07-04 11:09:01.525 HikariPool.throwPoolInitializationException:594 - HikariPool-1 - Exception during pool initialization.
+2025-07-03 11:35:28.948 HikariPool.throwPoolInitializationException:594 - HikariPool-1 - Exception during pool initialization.
 com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
 
 The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
@@ -177,8 +177,8 @@ Caused by: java.net.ConnectException: Connection timed out: no further informati
 	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:153)
 	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:63)
 	... 58 common frames omitted
-2025-07-04 11:09:01.563 AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory:426 - Failed to initialize JPA EntityManagerFactory: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment]
-2025-07-04 11:09:01.590 SpringApplication.reportFailure:822 - Application run failed
+2025-07-03 11:35:28.965 AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory:426 - Failed to initialize JPA EntityManagerFactory: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment]
+2025-07-03 11:35:29.011 SpringApplication.reportFailure:822 - Application run failed
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1770)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)

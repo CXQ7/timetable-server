@@ -1,43 +1,19 @@
-2025-07-01 16:53:42.798 Version.<clinit>:21 - HV000001: Hibernate Validator 8.0.0.Final
-2025-07-01 16:53:42.855 StartupInfoLogger.logStarting:51 - Starting TamsApplication v0.0.1-SNAPSHOT using Java 17.0.15 with PID 2352 (/home/share/timetable-server/target/tams-server-0.0.1-SNAPSHOT.jar started by root in /home/share/timetable-server)
-2025-07-01 16:53:42.866 SpringApplication.logStartupProfileInfo:638 - The following 1 profile is active: "dev"
-2025-07-01 16:53:45.041 TomcatWebServer.initialize:108 - Tomcat initialized with port(s): 12010 (http)
-2025-07-01 16:53:45.053 DirectJDKLog.log:173 - Initializing ProtocolHandler ["http-nio-12010"]
-2025-07-01 16:53:45.055 DirectJDKLog.log:173 - Starting service [Tomcat]
-2025-07-01 16:53:45.055 DirectJDKLog.log:173 - Starting Servlet engine: [Apache Tomcat/10.1.8]
-2025-07-01 16:53:45.201 DirectJDKLog.log:173 - Initializing Spring embedded WebApplicationContext
-2025-07-01 16:53:45.209 ServletWebServerApplicationContext.prepareWebApplicationContext:291 - Root WebApplicationContext: initialization completed in 2227 ms
-2025-07-01 16:53:46.987 DirectJDKLog.log:173 - Starting ProtocolHandler ["http-nio-12010"]
-2025-07-01 16:53:47.022 TomcatWebServer.start:220 - Tomcat started on port(s): 12010 (http) with context path ''
-2025-07-01 16:53:47.039 StartupInfoLogger.logStarted:57 - Started TamsApplication in 5.081 seconds (process running for 5.735)
-2025-07-01 17:27:42.800 Version.<clinit>:21 - HV000001: Hibernate Validator 8.0.0.Final
-2025-07-01 17:27:42.877 StartupInfoLogger.logStarting:51 - Starting TamsApplication v0.0.1-SNAPSHOT using Java 17.0.15 with PID 13297 (/home/share/timetable-server/target/tams-server-0.0.1-SNAPSHOT.jar started by root in /home/share/timetable-server)
-2025-07-01 17:27:42.879 SpringApplication.logStartupProfileInfo:638 - The following 1 profile is active: "dev"
-2025-07-01 17:27:44.872 TomcatWebServer.initialize:108 - Tomcat initialized with port(s): 12010 (http)
-2025-07-01 17:27:45.006 ServletWebServerApplicationContext.prepareWebApplicationContext:291 - Root WebApplicationContext: initialization completed in 2074 ms
-2025-07-01 17:27:46.764 TomcatWebServer.start:220 - Tomcat started on port(s): 12010 (http) with context path ''
-2025-07-01 17:27:46.785 StartupInfoLogger.logStarted:57 - Started TamsApplication in 4.794 seconds (process running for 5.432)
-2025-07-01 18:13:24.510 Version.<clinit>:21 - HV000001: Hibernate Validator 8.0.0.Final
-2025-07-01 18:13:24.619 StartupInfoLogger.logStarting:51 - Starting TamsApplication v0.0.1-SNAPSHOT using Java 17.0.15 with PID 7842 (/home/share/timetable-server/target/tams-server-0.0.1-SNAPSHOT.jar started by root in /home/share/timetable-server)
-2025-07-01 18:13:24.621 SpringApplication.logStartupProfileInfo:638 - The following 1 profile is active: "dev"
-2025-07-01 18:13:26.578 TomcatWebServer.initialize:108 - Tomcat initialized with port(s): 12010 (http)
-2025-07-01 18:13:26.591 DirectJDKLog.log:173 - Initializing ProtocolHandler ["http-nio-12010"]
-2025-07-01 18:13:26.592 DirectJDKLog.log:173 - Starting service [Tomcat]
-2025-07-01 18:13:26.593 DirectJDKLog.log:173 - Starting Servlet engine: [Apache Tomcat/10.1.8]
-2025-07-01 18:13:26.739 DirectJDKLog.log:173 - Initializing Spring embedded WebApplicationContext
-2025-07-01 18:13:26.740 ServletWebServerApplicationContext.prepareWebApplicationContext:291 - Root WebApplicationContext: initialization completed in 2007 ms
-2025-07-01 18:13:28.706 DirectJDKLog.log:173 - Starting ProtocolHandler ["http-nio-12010"]
-2025-07-01 18:13:28.740 TomcatWebServer.start:220 - Tomcat started on port(s): 12010 (http) with context path ''
-2025-07-01 18:13:28.758 StartupInfoLogger.logStarted:57 - Started TamsApplication in 5.005 seconds (process running for 5.582)
-2025-07-01 18:14:21.267 Version.<clinit>:21 - HV000001: Hibernate Validator 8.0.0.Final
-2025-07-01 18:14:21.363 StartupInfoLogger.logStarting:51 - Starting TamsApplication v0.0.1-SNAPSHOT using Java 17.0.15 with PID 8242 (/home/share/timetable-server/target/tams-server-0.0.1-SNAPSHOT.jar started by root in /home/share/timetable-server)
-2025-07-01 18:14:21.370 SpringApplication.logStartupProfileInfo:638 - The following 1 profile is active: "dev"
-2025-07-01 18:14:23.373 TomcatWebServer.initialize:108 - Tomcat initialized with port(s): 12010 (http)
-2025-07-01 18:14:23.384 DirectJDKLog.log:173 - Initializing ProtocolHandler ["http-nio-12010"]
-2025-07-01 18:14:23.385 DirectJDKLog.log:173 - Starting service [Tomcat]
-2025-07-01 18:14:23.386 DirectJDKLog.log:173 - Starting Servlet engine: [Apache Tomcat/10.1.8]
-2025-07-01 18:14:23.501 DirectJDKLog.log:173 - Initializing Spring embedded WebApplicationContext
-2025-07-01 18:14:23.503 ServletWebServerApplicationContext.prepareWebApplicationContext:291 - Root WebApplicationContext: initialization completed in 2008 ms
-2025-07-01 18:14:25.299 DirectJDKLog.log:173 - Starting ProtocolHandler ["http-nio-12010"]
-2025-07-01 18:14:25.327 TomcatWebServer.start:220 - Tomcat started on port(s): 12010 (http) with context path ''
-2025-07-01 18:14:25.347 StartupInfoLogger.logStarted:57 - Started TamsApplication in 4.905 seconds (process running for 5.471)
+2025-07-04 11:08:14.977 Version.<clinit>:21 - HV000001: Hibernate Validator 8.0.0.Final
+2025-07-04 11:08:15.035 StartupInfoLogger.logStarting:51 - Starting TamsApplication v0.0.1-SNAPSHOT using Java 17.0.10 with PID 892 (D:\xmu\小学期Java\timetable-server\target\tams-server-0.0.1-SNAPSHOT.jar started by Charles in D:\xmu\小学期Java\timetable-server)
+2025-07-04 11:08:15.037 SpringApplication.logStartupProfileInfo:638 - The following 1 profile is active: "dev"
+2025-07-04 11:08:15.795 RepositoryConfigurationDelegate.registerRepositoriesIn:138 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-04 11:08:15.821 RepositoryConfigurationDelegate.registerRepositoriesIn:208 - Finished Spring Data repository scanning in 17 ms. Found 0 JPA repository interfaces.
+2025-07-04 11:08:16.525 TomcatWebServer.initialize:108 - Tomcat initialized with port(s): 12010 (http)
+2025-07-04 11:08:16.533 DirectJDKLog.log:173 - Initializing ProtocolHandler ["http-nio-12010"]
+2025-07-04 11:08:16.534 DirectJDKLog.log:173 - Starting service [Tomcat]
+2025-07-04 11:08:16.534 DirectJDKLog.log:173 - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2025-07-04 11:08:16.626 DirectJDKLog.log:173 - Initializing Spring embedded WebApplicationContext
+2025-07-04 11:08:16.627 ServletWebServerApplicationContext.prepareWebApplicationContext:291 - Root WebApplicationContext: initialization completed in 1547 ms
+2025-07-04 11:08:16.797 HikariDataSource.getConnection:110 - HikariPool-1 - Starting...
+2025-07-04 11:08:39.096 LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-04 11:08:39.199 Version.logVersion:44 - HHH000412: Hibernate ORM core version 6.1.7.Final
+2025-07-04 11:08:39.477 HikariDataSource.getConnection:110 - HikariPool-1 - Starting...
+2025-07-04 11:09:01.566 DirectJDKLog.log:173 - Stopping service [Tomcat]
+2025-07-04 11:09:01.576 ConditionEvaluationReportLogger.logMessage:82 - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.

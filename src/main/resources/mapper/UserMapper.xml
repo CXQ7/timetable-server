@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhd.tams.module.user.dao.UserMapper">
+    <select id="selectByUsername" resultType="com.lhd.tams.module.user.model.data.UserDO">
+        SELECT * FROM `user` WHERE username = #{username}
+    </select>
+
+    <insert id="insert" parameterType="com.lhd.tams.module.user.model.data.UserDO">
+        INSERT INTO `user` (username, password, email, role)
+        VALUES (#{username}, #{password}, #{email}, #{role})
+    </insert>
+</mapper>

@@ -1,0 +1,12 @@
+package com.lhd.tams.module.user.model.data;
+
+import lombok.Data;
+
+@Data
+public class UserDO {
+    private Long id;
+    private String username;  // 用户名（用于登录）
+    private String password;  // 密码（需加密存储）
+    private String role;      // 角色（如 STUDENT/TEACHER）
+    private String email;     // 邮箱
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lhd.tams.module.message.dao.MessageMapper">
+    <insert id="insert" parameterType="com.lhd.tams.module.message.model.data.MessageDO">
+        INSERT INTO `message` 
+        (sender_id, receiver_id, content, is_read, create_time)
+        VALUES 
+        (#{senderId}, #{receiverId}, #{content}, #{isRead}, #{createTime})
+    </insert>
+
+    <select id="selectByReceiverId" resultType="com.lhd.tams.module.message.model.data.MessageDO">
+        SELECT * FROM `message` 
+        WHERE receiver_id = #{receiverId}
+        ORDER BY create_time DESC
+    </select>
+</mapper>
