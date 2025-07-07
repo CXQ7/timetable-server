@@ -20,6 +20,4 @@ public class CalendarSettingsDO {
     private Boolean showTeacher;
     private Boolean showClassroom;
     private String classTimes; // JSON字符串
-    private LocalDateTime gmtCreate;
-    private LocalDateTime gmtModified;
 }
