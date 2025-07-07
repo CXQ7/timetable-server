@@ -9,4 +9,14 @@
         INSERT INTO `user` (username, password, email, role)
         VALUES (#{username}, #{password}, #{email}, #{role})
     </insert>
+
+    <update id="updateUserInfo" parameterType="com.lhd.tams.module.user.model.data.UserDO">
+        UPDATE `user`
+        SET
+            <if test="password != null">password = #{password},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="avatarUrl != null">avatar_url = #{avatarUrl},</if>
+        username = username
+        WHERE username = #{username}
+    </update>
 </mapper>

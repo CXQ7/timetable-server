@@ -23,4 +23,9 @@ public class UserServiceImpl implements UserService {
     public void saveRegister(UserDO user) {
         userMapper.insert(user);
     }
+
+    @Override
+    public void updateUserInfo(UserDO user) {
+        userMapper.updateUserInfo(user);
+    }
 }

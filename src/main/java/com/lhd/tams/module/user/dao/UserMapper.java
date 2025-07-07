@@ -14,4 +14,9 @@ public interface UserMapper {
      * 新增用户（注册）
      */
     int insert(UserDO user);
+
+    /**
+     * 修改用户信息
+     */
+    int updateUserInfo(UserDO user);
 }

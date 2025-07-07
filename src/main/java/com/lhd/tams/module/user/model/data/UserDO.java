@@ -9,4 +9,5 @@ public class UserDO {
     private String password;  // 密码（需加密存储）
     private String role;      // 角色（如 STUDENT/TEACHER）
     private String email;     // 邮箱
+    private String avatarUrl; // 头像URL
 }

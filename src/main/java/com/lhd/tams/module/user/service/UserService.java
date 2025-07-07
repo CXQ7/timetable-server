@@ -12,4 +12,9 @@ public interface UserService {
      * 用户注册
      */
     void saveRegister(UserDO user);
+
+    /**
+     * 修改用户信息
+     */
+    void updateUserInfo(UserDO user);
 }

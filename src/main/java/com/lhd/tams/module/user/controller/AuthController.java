@@ -8,6 +8,7 @@ import com.lhd.tams.module.user.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,6 +46,7 @@ public class AuthController {
         user.setPassword(registerDTO.getPassword());
         user.setEmail(registerDTO.getEmail());
         user.setRole("STUDENT"); // 默认角色
+        user.setAvatarUrl(registerDTO.getAvatarUrl());
         userService.saveRegister(user);
         return ResponseEntityUtils.ok("注册成功");
     }
@@ -56,6 +58,25 @@ public class AuthController {
             return ResponseEntityUtils.badRequest("用户不存在");
         }
         return ResponseEntityUtils.ok(user);
+    }
+
+    @PutMapping("/user/update/{username}")
+    public Object updateUserInfo(@PathVariable String username, @RequestBody UpdateUserInfoDTO updateDTO) {
+        UserDO user = userService.getUserByUsername(username);
+        if (user == null) {
+            return ResponseEntityUtils.badRequest("用户不存在");
+        }
+        if (updateDTO.getPassword() != null) {
+            user.setPassword(updateDTO.getPassword());
+        }
+        if (updateDTO.getEmail() != null) {
+            user.setEmail(updateDTO.getEmail());
+        }
+        if (updateDTO.getAvatarUrl() != null) {
+            user.setAvatarUrl(updateDTO.getAvatarUrl());
+        }
+        userService.updateUserInfo(user);
+        return ResponseEntityUtils.ok("用户信息更新成功");
     }
 }
 
@@ -74,10 +95,26 @@ class RegisterDTO {
     private String username;
     private String password;
     private String email;
+    private String avatarUrl;
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+    public String getAvatarUrl() { return avatarUrl; }
+    public void setAvatarUrl(String avatarUrl) { this.avatarUrl = avatarUrl; }
+}
+
+// 新增DTO
+class UpdateUserInfoDTO {
+    private String password;
+    private String email;
+    private String avatarUrl;
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+    public String getAvatarUrl() { return avatarUrl; }
+    public void setAvatarUrl(String avatarUrl) { this.avatarUrl = avatarUrl; }
 }
