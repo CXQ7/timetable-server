@@ -21,7 +21,7 @@ public class CalendarSettingsController extends BaseController {
     private CalendarSettingsService calendarSettingsService;
 
     @Operation(summary = "获取课表设置")
-    @GetMapping("/")
+    @GetMapping("/search")
     public ResponseEntity<ApiResult<CalendarSettingsVO>> getCalendarSettings() {
         return success(calendarSettingsService.getCalendarSettings());
     }
