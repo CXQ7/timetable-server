@@ -32,4 +32,7 @@ public class CourseSchedulingQuery {
 
     @Schema(description = "下课时间")
     private String finishTime;
+
+    @Schema(description = "备注")
+    private String remarks;
 }

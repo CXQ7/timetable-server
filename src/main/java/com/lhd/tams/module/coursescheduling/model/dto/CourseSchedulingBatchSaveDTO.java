@@ -9,9 +9,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-/**
- * @author lhd
- */
 @Schema(description = "排课批量新增参数")
 @Data
 public class CourseSchedulingBatchSaveDTO {
