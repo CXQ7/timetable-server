@@ -61,4 +61,11 @@ public class ApiResult<T> {
     public void setData(T data) {
         this.data = data;
     }
+
+    public static <T> ApiResult<T> success() {
+        return new ApiResult<>(0, "success", null);
+    }
+    public static <T> ApiResult<T> success(T data) {
+        return new ApiResult<>(0, "success", data);
+    }
 }

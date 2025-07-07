@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lhd.tams.module.settings.dao.CalendarSettingsMapper;
 import com.lhd.tams.module.settings.model.data.CalendarSettingsDO;
 import com.lhd.tams.module.settings.model.dto.CalendarSettingsSaveDTO;
+import com.lhd.tams.module.settings.model.vo.CalendarSettingsVO;
 import com.lhd.tams.module.settings.service.CalendarSettingsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,24 @@ public class CalendarSettingsServiceImpl extends ServiceImpl<CalendarSettingsMap
         // 假设只有一条设置，id=1
         entity.setId(1L);
         this.updateById(entity);
+    }
+
+    @Override
+    public CalendarSettingsVO getCalendarSettings() {
+        CalendarSettingsDO entity = this.getById(1L);
+        if (entity == null) return null;
+        CalendarSettingsVO vo = new CalendarSettingsVO();
+        vo.setId(entity.getId());
+        vo.setName(entity.getName());
+        vo.setFirstWeekDay(entity.getFirstWeekDay() != null ? entity.getFirstWeekDay().toString() : null);
+        vo.setClassesPerDay(entity.getClassesPerDay());
+        vo.setSemesterCount(entity.getSemesterCount());
+        vo.setShowSaturday(entity.getShowSaturday());
+        vo.setShowSunday(entity.getShowSunday());
+        vo.setShowNonCurrentWeek(entity.getShowNonCurrentWeek());
+        vo.setShowTeacher(entity.getShowTeacher());
+        vo.setShowClassroom(entity.getShowClassroom());
+        return vo;
     }
 
     private CalendarSettingsDO convert(CalendarSettingsSaveDTO dto) {
