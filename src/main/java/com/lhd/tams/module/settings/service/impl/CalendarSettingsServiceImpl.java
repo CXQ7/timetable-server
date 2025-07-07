@@ -50,6 +50,19 @@ public class CalendarSettingsServiceImpl extends ServiceImpl<CalendarSettingsMap
         return vo;
     }
 
+    @Override
+    public boolean updateCalendarSettings(CalendarSettingsSaveDTO saveDTO) {
+        CalendarSettingsDO entity = convert(saveDTO);
+        entity.setId(1L);
+        return this.updateById(entity);
+    }
+
+    @Override
+    public boolean saveCalendarSettings(CalendarSettingsSaveDTO saveDTO) {
+        CalendarSettingsDO entity = convert(saveDTO);
+        return this.save(entity);
+    }
+
     private CalendarSettingsDO convert(CalendarSettingsSaveDTO dto) {
         CalendarSettingsDO entity = new CalendarSettingsDO();
         entity.setName(dto.getName());
