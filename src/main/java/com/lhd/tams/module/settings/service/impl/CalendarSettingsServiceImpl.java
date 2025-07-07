@@ -66,7 +66,10 @@ public class CalendarSettingsServiceImpl extends ServiceImpl<CalendarSettingsMap
     private CalendarSettingsDO convert(CalendarSettingsSaveDTO dto) {
         CalendarSettingsDO entity = new CalendarSettingsDO();
         entity.setName(dto.getName());
-        entity.setFirstWeekDay(java.time.LocalDate.parse(dto.getFirstWeekDay()));
+        // 添加null检查
+        if (dto.getFirstWeekDay() != null && !dto.getFirstWeekDay().isEmpty()) {
+            entity.setFirstWeekDay(java.time.LocalDate.parse(dto.getFirstWeekDay()));
+        }
         entity.setClassesPerDay(dto.getClassesPerDay());
         entity.setSemesterCount(dto.getSemesterCount());
         entity.setShowSaturday(dto.getShowSaturday());
