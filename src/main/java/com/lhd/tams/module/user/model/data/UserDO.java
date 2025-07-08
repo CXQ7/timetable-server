@@ -10,4 +10,6 @@ public class UserDO {
     private String role;      // 角色（如 STUDENT/TEACHER）
     private String email;     // 邮箱
     private String avatarUrl; // 头像URL
+    private Boolean inSite;   // 是否开启站内提醒
+    private Boolean emailReminder; // 是否开启邮件提醒
 }
