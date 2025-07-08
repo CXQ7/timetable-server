@@ -19,5 +19,4 @@
         username = username
         WHERE username = #{username}
     </update>
-    </update>
 </mapper>
