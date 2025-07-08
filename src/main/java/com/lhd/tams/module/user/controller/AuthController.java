@@ -140,6 +140,10 @@ public class AuthController {
             return ApiResult.success("用户信息更新成功", updatedUser);
         } catch (Exception e) {
             e.printStackTrace();
+            // 特殊处理数据库字段长度错误
+            if (e.getMessage() != null && e.getMessage().contains("Data too long for column")) {
+                return ApiResult.error("头像数据过大，请上传较小的图片或联系管理员修改数据库字段长度");
+            }
             return ApiResult.error("更新失败：" + e.getMessage());
         }
     }
