@@ -74,25 +74,44 @@ public class AuthController {
     @PutMapping("/user/update/{username}")
     public ApiResult<UserDO> updateUserInfo(@PathVariable String username, @RequestBody UpdateUserInfoDTO updateDTO) {
         try {
+            System.out.println("收到更新请求，用户名: " + username);
+            System.out.println("更新数据: password=" + updateDTO.getPassword() + 
+                             ", email=" + updateDTO.getEmail() + 
+                             ", avatarUrl=" + updateDTO.getAvatarUrl());
+            
             UserDO user = userService.getUserByUsername(username);
             if (user == null) {
                 return ApiResult.error("用户不存在");
             }
-            if (updateDTO.getPassword() != null) {
-                user.setPassword(updateDTO.getPassword());
+            
+            // 只更新非空字段
+            boolean hasUpdate = false;
+            if (updateDTO.getPassword() != null && !updateDTO.getPassword().trim().isEmpty()) {
+                user.setPassword(updateDTO.getPassword().trim());
+                hasUpdate = true;
             }
-            if (updateDTO.getEmail() != null) {
-                user.setEmail(updateDTO.getEmail());
+            if (updateDTO.getEmail() != null && !updateDTO.getEmail().trim().isEmpty()) {
+                user.setEmail(updateDTO.getEmail().trim());
+                hasUpdate = true;
             }
-            if (updateDTO.getAvatarUrl() != null) {
-                user.setAvatarUrl(updateDTO.getAvatarUrl());
+            if (updateDTO.getAvatarUrl() != null && !updateDTO.getAvatarUrl().trim().isEmpty()) {
+                user.setAvatarUrl(updateDTO.getAvatarUrl().trim());
+                hasUpdate = true;
+                System.out.println("设置头像URL: " + updateDTO.getAvatarUrl().trim());
             }
+            
+            if (!hasUpdate) {
+                return ApiResult.error("没有可更新的数据");
+            }
+            
             userService.updateUserInfo(user);
             
             // 返回更新后的用户信息
             UserDO updatedUser = userService.getUserByUsername(username);
+            System.out.println("更新后的用户信息: " + updatedUser.getAvatarUrl());
             return ApiResult.success("用户信息更新成功", updatedUser);
         } catch (Exception e) {
+            e.printStackTrace();
             return ApiResult.error("更新失败：" + e.getMessage());
         }
     }
@@ -124,7 +143,7 @@ class RegisterDTO {
     public void setAvatarUrl(String avatarUrl) { this.avatarUrl = avatarUrl; }
 }
 
-// 新增DTO
+// 更新用户信息DTO
 class UpdateUserInfoDTO {
     private String password;
     private String email;
