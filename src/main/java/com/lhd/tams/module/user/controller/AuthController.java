@@ -1,8 +1,7 @@
 package com.lhd.tams.module.user.controller;
 
-import com.lhd.tams.common.consts.ErrorCodeEnum;
+import com.lhd.tams.common.model.ApiResult;
 import com.lhd.tams.common.util.JwtUtils;
-import com.lhd.tams.common.util.ResponseEntityUtils;
 import com.lhd.tams.module.user.model.data.UserDO;
 import com.lhd.tams.module.user.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,61 +21,80 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public Object login(@RequestBody LoginDTO loginDTO) {
-        // 1. 根据用户名查询用户
-        UserDO user = userService.getUserByUsername(loginDTO.getUsername());
-        if (user == null || !user.getPassword().equals(loginDTO.getPassword())) {
-            return ResponseEntityUtils.badRequest("用户名或密码错误");
+    public ApiResult<String> login(@RequestBody LoginDTO loginDTO) {
+        try {
+            // 1. 根据用户名查询用户
+            UserDO user = userService.getUserByUsername(loginDTO.getUsername());
+            if (user == null || !user.getPassword().equals(loginDTO.getPassword())) {
+                return ApiResult.error("用户名或密码错误");
+            }
+            // 2. 生成 JWT Token
+            String token = JwtUtils.generateToken(user.getUsername());
+            // 3. 返回 Token
+            return ApiResult.success("登录成功", token);
+        } catch (Exception e) {
+            return ApiResult.error("登录失败：" + e.getMessage());
         }
-        // 2. 生成 JWT Token
-        String token = JwtUtils.generateToken(user.getUsername());
-        // 3. 返回 Token
-        return ResponseEntityUtils.ok(token);
     }
 
     @PostMapping("/user/register")
-    public Object register(@RequestBody RegisterDTO registerDTO) {
-        // 检查用户名是否已存在
-        UserDO exist = userService.getUserByUsername(registerDTO.getUsername());
-        if (exist != null) {
-            return ResponseEntityUtils.badRequest("用户名已存在");
+    public ApiResult<String> register(@RequestBody RegisterDTO registerDTO) {
+        try {
+            // 检查用户名是否已存在
+            UserDO exist = userService.getUserByUsername(registerDTO.getUsername());
+            if (exist != null) {
+                return ApiResult.error("用户名已存在");
+            }
+            UserDO user = new UserDO();
+            user.setUsername(registerDTO.getUsername());
+            user.setPassword(registerDTO.getPassword());
+            user.setEmail(registerDTO.getEmail());
+            user.setRole("STUDENT"); // 默认角色
+            user.setAvatarUrl(registerDTO.getAvatarUrl());
+            userService.saveRegister(user);
+            return ApiResult.success("注册成功");
+        } catch (Exception e) {
+            return ApiResult.error("注册失败：" + e.getMessage());
         }
-        UserDO user = new UserDO();
-        user.setUsername(registerDTO.getUsername());
-        user.setPassword(registerDTO.getPassword());
-        user.setEmail(registerDTO.getEmail());
-        user.setRole("STUDENT"); // 默认角色
-        user.setAvatarUrl(registerDTO.getAvatarUrl());
-        userService.saveRegister(user);
-        return ResponseEntityUtils.ok("注册成功");
     }
 
     @GetMapping("/user/username/{username}")
-    public Object getUserByUsername(@PathVariable String username) {
-        UserDO user = userService.getUserByUsername(username);
-        if (user == null) {
-            return ResponseEntityUtils.badRequest("用户不存在");
+    public ApiResult<UserDO> getUserByUsername(@PathVariable String username) {
+        try {
+            UserDO user = userService.getUserByUsername(username);
+            if (user == null) {
+                return ApiResult.error("用户不存在");
+            }
+            return ApiResult.success("查询成功", user);
+        } catch (Exception e) {
+            return ApiResult.error("查询失败：" + e.getMessage());
         }
-        return ResponseEntityUtils.ok(user);
     }
 
     @PutMapping("/user/update/{username}")
-    public Object updateUserInfo(@PathVariable String username, @RequestBody UpdateUserInfoDTO updateDTO) {
-        UserDO user = userService.getUserByUsername(username);
-        if (user == null) {
-            return ResponseEntityUtils.badRequest("用户不存在");
+    public ApiResult<UserDO> updateUserInfo(@PathVariable String username, @RequestBody UpdateUserInfoDTO updateDTO) {
+        try {
+            UserDO user = userService.getUserByUsername(username);
+            if (user == null) {
+                return ApiResult.error("用户不存在");
+            }
+            if (updateDTO.getPassword() != null) {
+                user.setPassword(updateDTO.getPassword());
+            }
+            if (updateDTO.getEmail() != null) {
+                user.setEmail(updateDTO.getEmail());
+            }
+            if (updateDTO.getAvatarUrl() != null) {
+                user.setAvatarUrl(updateDTO.getAvatarUrl());
+            }
+            userService.updateUserInfo(user);
+            
+            // 返回更新后的用户信息
+            UserDO updatedUser = userService.getUserByUsername(username);
+            return ApiResult.success("用户信息更新成功", updatedUser);
+        } catch (Exception e) {
+            return ApiResult.error("更新失败：" + e.getMessage());
         }
-        if (updateDTO.getPassword() != null) {
-            user.setPassword(updateDTO.getPassword());
-        }
-        if (updateDTO.getEmail() != null) {
-            user.setEmail(updateDTO.getEmail());
-        }
-        if (updateDTO.getAvatarUrl() != null) {
-            user.setAvatarUrl(updateDTO.getAvatarUrl());
-        }
-        userService.updateUserInfo(user);
-        return ResponseEntityUtils.ok("用户信息更新成功");
     }
 }
 
