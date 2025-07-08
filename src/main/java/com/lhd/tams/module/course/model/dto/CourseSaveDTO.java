@@ -15,7 +15,6 @@ public class CourseSaveDTO {
     private Integer courseType;
     @Schema(description = "课程时长，单位分钟")
     private Integer duration;
-
     @Schema(description = "背景颜色")
-    private String backgroundColor;
+     private String backgroundColor;
 }
