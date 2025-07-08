@@ -87,7 +87,8 @@ public class AuthController {
             System.out.println("收到更新请求，用户名: " + username);
             System.out.println("更新数据: password=" + updateDTO.getPassword() + 
                              ", email=" + updateDTO.getEmail() + 
-                             ", avatarBase64=" + (updateDTO.getAvatarBase64() != null ? "有头像数据" : "无头像数据"));
+                             ", avatarBase64=" + (updateDTO.getAvatarBase64() != null ? "有avatarBase64数据" : "无avatarBase64数据") +
+                             ", avatarUrl=" + (updateDTO.getAvatarUrl() != null ? "有avatarUrl数据" : "无avatarUrl数据"));
             
             UserDO user = userService.getUserByUsername(username);
             if (user == null) {
@@ -104,13 +105,23 @@ public class AuthController {
                 user.setEmail(updateDTO.getEmail().trim());
                 hasUpdate = true;
             }
+            
+            // 处理头像数据 - 优先使用avatarBase64，其次使用avatarUrl
+            String avatarData = null;
             if (updateDTO.getAvatarBase64() != null && !updateDTO.getAvatarBase64().trim().isEmpty()) {
+                avatarData = updateDTO.getAvatarBase64().trim();
+                System.out.println("使用avatarBase64字段，数据长度: " + avatarData.length());
+            } else if (updateDTO.getAvatarUrl() != null && !updateDTO.getAvatarUrl().trim().isEmpty()) {
+                avatarData = updateDTO.getAvatarUrl().trim();
+                System.out.println("使用avatarUrl字段，数据长度: " + avatarData.length());
+            }
+            
+            if (avatarData != null) {
                 // 验证base64格式
-                String base64Data = updateDTO.getAvatarBase64().trim();
-                if (isValidBase64Image(base64Data)) {
-                    user.setAvatarUrl(base64Data);
+                if (isValidBase64Image(avatarData)) {
+                    user.setAvatarUrl(avatarData);
                     hasUpdate = true;
-                    System.out.println("设置头像Base64数据，长度: " + base64Data.length());
+                    System.out.println("设置头像Base64数据成功");
                 } else {
                     return ApiResult.error("无效的图片格式，请上传有效的图片");
                 }
@@ -198,11 +209,15 @@ class RegisterDTO {
 class UpdateUserInfoDTO {
     private String password;
     private String email;
-    private String avatarBase64;  // 改为base64格式
+    private String avatarBase64;  // base64格式
+    private String avatarUrl;     // 兼容原有的avatarUrl字段
+    
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
     public String getAvatarBase64() { return avatarBase64; }
     public void setAvatarBase64(String avatarBase64) { this.avatarBase64 = avatarBase64; }
+    public String getAvatarUrl() { return avatarUrl; }
+    public void setAvatarUrl(String avatarUrl) { this.avatarUrl = avatarUrl; }
 }
