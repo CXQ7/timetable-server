@@ -50,7 +50,17 @@ public class AuthController {
             user.setPassword(registerDTO.getPassword());
             user.setEmail(registerDTO.getEmail());
             user.setRole("STUDENT"); // 默认角色
-            user.setAvatarUrl(registerDTO.getAvatarUrl());
+            
+            // 处理头像Base64数据
+            if (registerDTO.getAvatarBase64() != null && !registerDTO.getAvatarBase64().trim().isEmpty()) {
+                String base64Data = registerDTO.getAvatarBase64().trim();
+                if (isValidBase64Image(base64Data)) {
+                    user.setAvatarUrl(base64Data);
+                } else {
+                    return ApiResult.error("无效的图片格式，请上传有效的图片");
+                }
+            }
+            
             userService.saveRegister(user);
             return ApiResult.success("注册成功");
         } catch (Exception e) {
@@ -77,7 +87,7 @@ public class AuthController {
             System.out.println("收到更新请求，用户名: " + username);
             System.out.println("更新数据: password=" + updateDTO.getPassword() + 
                              ", email=" + updateDTO.getEmail() + 
-                             ", avatarUrl=" + updateDTO.getAvatarUrl());
+                             ", avatarBase64=" + (updateDTO.getAvatarBase64() != null ? "有头像数据" : "无头像数据"));
             
             UserDO user = userService.getUserByUsername(username);
             if (user == null) {
@@ -94,10 +104,16 @@ public class AuthController {
                 user.setEmail(updateDTO.getEmail().trim());
                 hasUpdate = true;
             }
-            if (updateDTO.getAvatarUrl() != null && !updateDTO.getAvatarUrl().trim().isEmpty()) {
-                user.setAvatarUrl(updateDTO.getAvatarUrl().trim());
-                hasUpdate = true;
-                System.out.println("设置头像URL: " + updateDTO.getAvatarUrl().trim());
+            if (updateDTO.getAvatarBase64() != null && !updateDTO.getAvatarBase64().trim().isEmpty()) {
+                // 验证base64格式
+                String base64Data = updateDTO.getAvatarBase64().trim();
+                if (isValidBase64Image(base64Data)) {
+                    user.setAvatarUrl(base64Data);
+                    hasUpdate = true;
+                    System.out.println("设置头像Base64数据，长度: " + base64Data.length());
+                } else {
+                    return ApiResult.error("无效的图片格式，请上传有效的图片");
+                }
             }
             
             if (!hasUpdate) {
@@ -108,12 +124,47 @@ public class AuthController {
             
             // 返回更新后的用户信息
             UserDO updatedUser = userService.getUserByUsername(username);
-            System.out.println("更新后的用户信息: " + updatedUser.getAvatarUrl());
+            System.out.println("更新后的用户信息: 头像数据长度=" + 
+                             (updatedUser.getAvatarUrl() != null ? updatedUser.getAvatarUrl().length() : 0));
             return ApiResult.success("用户信息更新成功", updatedUser);
         } catch (Exception e) {
             e.printStackTrace();
             return ApiResult.error("更新失败：" + e.getMessage());
         }
+    }
+    
+    /**
+     * 验证base64图片格式
+     */
+    private boolean isValidBase64Image(String base64Data) {
+        if (base64Data == null || base64Data.isEmpty()) {
+            return false;
+        }
+        
+        // 检查是否是data URL格式 (data:image/...;base64,...)
+        if (base64Data.startsWith("data:image/")) {
+            // 提取base64部分
+            String[] parts = base64Data.split(",");
+            if (parts.length == 2) {
+                String mimeType = parts[0];
+                String base64 = parts[1];
+                
+                // 检查MIME类型
+                if (mimeType.contains("image/jpeg") || mimeType.contains("image/png") || 
+                    mimeType.contains("image/gif") || mimeType.contains("image/webp")) {
+                    
+                    // 检查base64编码是否有效
+                    try {
+                        java.util.Base64.getDecoder().decode(base64);
+                        return true;
+                    } catch (IllegalArgumentException e) {
+                        return false;
+                    }
+                }
+            }
+        }
+        
+        return false;
     }
 }
 
@@ -132,26 +183,26 @@ class RegisterDTO {
     private String username;
     private String password;
     private String email;
-    private String avatarUrl;
+    private String avatarBase64;  // 改为base64格式
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
-    public String getAvatarUrl() { return avatarUrl; }
-    public void setAvatarUrl(String avatarUrl) { this.avatarUrl = avatarUrl; }
+    public String getAvatarBase64() { return avatarBase64; }
+    public void setAvatarBase64(String avatarBase64) { this.avatarBase64 = avatarBase64; }
 }
 
 // 更新用户信息DTO
 class UpdateUserInfoDTO {
     private String password;
     private String email;
-    private String avatarUrl;
+    private String avatarBase64;  // 改为base64格式
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
-    public String getAvatarUrl() { return avatarUrl; }
-    public void setAvatarUrl(String avatarUrl) { this.avatarUrl = avatarUrl; }
+    public String getAvatarBase64() { return avatarBase64; }
+    public void setAvatarBase64(String avatarBase64) { this.avatarBase64 = avatarBase64; }
 }
