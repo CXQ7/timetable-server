@@ -8,8 +8,6 @@ import com.lhd.tams.module.course.dao.CourseMapper;
 import com.lhd.tams.module.course.model.data.CourseDO;
 import com.lhd.tams.module.coursescheduling.dao.CourseSchedulingMapper;
 import com.lhd.tams.module.coursescheduling.model.data.CourseSchedulingDO;
-import com.lhd.tams.module.message.dao.MessageMapper;
-import com.lhd.tams.module.message.model.data.MessageDO;
 import com.lhd.tams.module.message.model.dto.ReminderSettingsDTO;
 import com.lhd.tams.module.message.model.vo.ReminderSettingsVO;
 import com.lhd.tams.module.message.model.vo.UpcomingReminderVO;
@@ -19,27 +17,25 @@ import com.lhd.tams.module.user.model.data.UserDO;
 import com.lhd.tams.module.message.service.EmailService;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+//import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+//import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class MessageServiceImpl implements MessageService {
 
-    private final MessageMapper messageMapper;
     private final UserMapper userMapper;
     private final CourseSchedulingMapper courseSchedulingMapper;
     private final CourseMapper courseMapper;
     private final ClassroomMapper classroomMapper;
     private final EmailService emailService;
 
-    public MessageServiceImpl(MessageMapper messageMapper, UserMapper userMapper, 
+    public MessageServiceImpl(UserMapper userMapper, 
                             CourseSchedulingMapper courseSchedulingMapper, 
                             CourseMapper courseMapper, ClassroomMapper classroomMapper,
                             EmailService emailService) {
-        this.messageMapper = messageMapper;
         this.userMapper = userMapper;
         this.courseSchedulingMapper = courseSchedulingMapper;
         this.courseMapper = courseMapper;
@@ -47,6 +43,8 @@ public class MessageServiceImpl implements MessageService {
         this.emailService = emailService;
     }
 
+
+    /* 
     @Override
     public void sendMessage(MessageDO message) {
         message.setCreateTime(LocalDateTime.now());
@@ -58,6 +56,8 @@ public class MessageServiceImpl implements MessageService {
     public List<MessageDO> getMessagesByReceiverId(Long receiverId) {
         return messageMapper.selectByReceiverId(receiverId);
     }
+
+    */
 
     @Override
     public ReminderSettingsVO getReminderSettings(String username) {

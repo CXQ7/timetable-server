@@ -1,6 +1,6 @@
 package com.lhd.tams.module.message.service;
 
-import com.lhd.tams.module.message.model.data.MessageDO;
+//import com.lhd.tams.module.message.model.data.MessageDO;
 import com.lhd.tams.module.message.model.dto.ReminderSettingsDTO;
 import com.lhd.tams.module.message.model.vo.ReminderSettingsVO;
 import com.lhd.tams.module.message.model.vo.UpcomingReminderVO;
@@ -8,8 +8,8 @@ import com.lhd.tams.module.message.model.vo.UpcomingReminderVO;
 import java.util.List;
 
 public interface MessageService {
-    void sendMessage(MessageDO message);
-    List<MessageDO> getMessagesByReceiverId(Long receiverId);
+
+    
     
     /**
      * 获取用户提醒设置
