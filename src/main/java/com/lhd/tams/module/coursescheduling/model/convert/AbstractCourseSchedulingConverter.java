@@ -11,9 +11,6 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-/**
- * @author lhd
- */
 @Mapper
 public abstract class AbstractCourseSchedulingConverter {
 

@@ -6,7 +6,9 @@
                cs.id, cs.classroom_id classroomId, classroom.name classroomName,
                cs.course_id courseId, course.name courseName, course.duration, course.background_color backgroundColor,
                cs.teacher_id teacherId, teacher.name teacherName,
-               cs.date, cs.attend_time attendTime, cs.finish_time finishTime
+               cs.date, cs.attend_time attendTime, cs.finish_time finishTime,
+                cs.remarks remarks
+
     </sql>
 
     <select id="selectCourseSchedulingList" resultType="CourseSchedulingListVO">

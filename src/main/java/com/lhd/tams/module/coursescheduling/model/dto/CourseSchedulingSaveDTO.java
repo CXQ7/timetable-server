@@ -37,4 +37,6 @@ public class CourseSchedulingSaveDTO {
     @NotNull
     @Schema(description = "下课时间")
     private LocalTime finishTime;
+
+    private String remarks;
 }

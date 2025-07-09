@@ -3,11 +3,9 @@ package com.lhd.tams.module.course.model.data;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-/**
- * @author lhd
- */
 @Data
 @TableName("t_course")
 public class CourseDO {
@@ -19,7 +17,7 @@ public class CourseDO {
      * 名称
      */
     private String name;
-
+    private Integer courseType;
     /**
      * 停启用状态
      */

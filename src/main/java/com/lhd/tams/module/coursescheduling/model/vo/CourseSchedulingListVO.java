@@ -48,4 +48,7 @@ public class CourseSchedulingListVO {
 
     @Schema(description = "下课时间")
     private LocalTime finishTime;
+
+    @Schema(description = "备注")
+    private String remarks;
 }

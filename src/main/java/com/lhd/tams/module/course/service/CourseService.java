@@ -7,9 +7,6 @@ import com.lhd.tams.module.course.model.vo.CourseListVO;
 
 import java.util.List;
 
-/**
- * @author lhd
- */
 public interface CourseService {
 
     /**

@@ -13,9 +13,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author lhd
- */
 public interface CourseSchedulingMapper extends BaseMapper<CourseSchedulingDO> {
 
     /**
