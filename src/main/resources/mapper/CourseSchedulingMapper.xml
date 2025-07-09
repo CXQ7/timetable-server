@@ -92,4 +92,36 @@
         order by count desc;
     </select>
 
+    <insert id="insertCourseScheduling" parameterType="com.lhd.tams.module.coursescheduling.model.data.CourseSchedulingDO">
+        INSERT INTO t_course_scheduling (
+        classroom_id,
+        course_id,
+        teacher_id,
+        date,
+        attend_time,
+        finish_time,
+        remarks
+        ) VALUES (
+        #{classroomId},
+        #{courseId},
+        #{teacherId},
+        #{date},
+        #{attendTime},
+        #{finishTime},
+        #{remarks}
+        )
+    </insert>
+
+
+    <update id="updateCourseScheduling" parameterType="com.lhd.tams.module.coursescheduling.model.data.CourseSchedulingDO">
+        UPDATE t_course_scheduling
+        SET classroom_id = #{classroomId},
+        course_id = #{courseId},
+        teacher_id = #{teacherId},
+        date = #{date},
+        attend_time = #{attendTime},
+        finish_time = #{finishTime},
+        remarks = #{remarks}
+        WHERE id = #{id}
+    </update>
 </mapper>

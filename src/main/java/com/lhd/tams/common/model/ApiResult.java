@@ -129,5 +129,3 @@ public class ApiResult<T> {
 
     public void setData(T data) {
         this.data = data;
-    }
-}

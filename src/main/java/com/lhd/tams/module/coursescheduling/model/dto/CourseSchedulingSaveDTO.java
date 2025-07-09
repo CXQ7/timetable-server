@@ -38,5 +38,12 @@ public class CourseSchedulingSaveDTO {
     @Schema(description = "下课时间")
     private LocalTime finishTime;
 
+    @Schema(description = "备注")
     private String remarks;
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
 }
