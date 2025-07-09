@@ -6,17 +6,29 @@
     </select>
 
     <insert id="insert" parameterType="com.lhd.tams.module.user.model.data.UserDO">
-        INSERT INTO `user` (username, password, email, role, avatar_url)
-        VALUES (#{username}, #{password}, #{email}, #{role}, #{avatarUrl})
+        INSERT INTO `user` (username, password, email, role, avatar_url, in_site, email_reminder)
+        VALUES (#{username}, #{password}, #{email}, #{role}, #{avatarUrl}, #{inSite}, #{emailReminder})
     </insert>
 
     <update id="updateUserInfo" parameterType="com.lhd.tams.module.user.model.data.UserDO">
         UPDATE `user`
-        <set>
-            <if test="password != null and password != ''">password = #{password},</if>
-            <if test="email != null and email != ''">email = #{email},</if>
-            <if test="avatarUrl != null and avatarUrl != ''">avatar_url = #{avatarUrl},</if>
-        </set>
+        SET
+            <if test="password != null">password = #{password},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="avatarUrl != null">avatar_url = #{avatarUrl},</if>
+            <if test="inSite != null">in_site = #{inSite},</if>
+            <if test="emailReminder != null">email_reminder = #{emailReminder},</if>
+        username = username
+        WHERE username = #{username}
+    </update>
+
+    <select id="getReminderSettings" resultType="com.lhd.tams.module.user.model.data.UserDO">
+        SELECT in_site, email_reminder FROM `user` WHERE username = #{username}
+    </select>
+
+    <update id="updateReminderSettings">
+        UPDATE `user`
+        SET in_site = #{inSite}, email_reminder = #{emailReminder}
         WHERE username = #{username}
     </update>
 </mapper>
