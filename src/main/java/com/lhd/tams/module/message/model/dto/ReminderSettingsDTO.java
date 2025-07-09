@@ -16,4 +16,9 @@ public class ReminderSettingsDTO {
      * 是否开启邮件提醒
      */
     private Boolean email;
+
+    /**
+     * 用户名
+     */
+    private String username;
 } 

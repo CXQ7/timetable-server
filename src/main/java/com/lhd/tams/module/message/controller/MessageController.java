@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
 public class MessageController {
 
     private final MessageService messageService;
@@ -44,9 +43,8 @@ public class MessageController {
      * 更新用户提醒设置
      */
     @PutMapping("/course-reminder/settings")
-    public Object updateReminderSettings(@RequestParam String username, 
-                                        @RequestBody ReminderSettingsDTO settings) {
-        messageService.updateReminderSettings(username, settings);
+    public Object updateReminderSettings(@RequestBody ReminderSettingsDTO settings) {
+        messageService.updateReminderSettings(settings.getUsername(), settings);
         return ResponseEntityUtils.ok("提醒设置更新成功");
     }
 
