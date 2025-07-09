@@ -1,5 +1,4 @@
 
-
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/tams?useSSL=false&serverTimezone=UTC
@@ -15,6 +14,21 @@ spring:
       maximum-pool-size: 10
       minimum-idle: 10
 
+
+  mail:
+    host: smtp.qq.com
+    port: 587
+    username: 2139728203@qq.com
+    password: zagzwnsbvrvcicfg
+    protocol: smtp
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
 logging:
   level:
     com.lhd.tams: debug
@@ -29,5 +43,5 @@ tams:
 
     # 新增 JWT 配置
 jwt:
-  secret-key: x7H$2pL9&qW8zRvE1tY6uIoP3aS5dFgHjK4lMnBvCxZ  # 替换为你生成的密钥
+  secret-key: Q2hpbmFfU2VjcmV0X0tleV9Gb3JfSlcudGVzdF9iYXNlNjQ=  # 替换为你生成的密钥
   expiration-time: 864000000  # Token 过期时间（毫秒），例如 10 天

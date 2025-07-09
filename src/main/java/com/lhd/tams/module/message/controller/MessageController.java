@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/course-reminder")
 public class MessageController {
 
     private final MessageService messageService;
@@ -34,7 +34,7 @@ public class MessageController {
     /**
      * 获取用户提醒设置
      */
-    @GetMapping("/course-reminder/settings")
+    @GetMapping("/settings")
     public Object getReminderSettings(@RequestParam String username) {
         ReminderSettingsVO settings = messageService.getReminderSettings(username);
         return ResponseEntityUtils.ok(settings);
@@ -43,17 +43,16 @@ public class MessageController {
     /**
      * 更新用户提醒设置
      */
-    @PutMapping("/course-reminder/settings")
-    public Object updateReminderSettings(@RequestParam String username, 
-                                        @RequestBody ReminderSettingsDTO settings) {
-        messageService.updateReminderSettings(username, settings);
+    @PutMapping("/settings")
+    public Object updateReminderSettings( @RequestBody ReminderSettingsDTO settings) {
+        messageService.updateReminderSettings(settings);
         return ResponseEntityUtils.ok("提醒设置更新成功");
     }
 
     /**
      * 获取即将到来的课程提醒
      */
-    @GetMapping("/course-reminder/upcoming")
+    @GetMapping("/upcoming")
     public Object getUpcomingReminders(@RequestParam String username) {
         List<UpcomingReminderVO> reminders = messageService.getUpcomingReminders(username);
         return ResponseEntityUtils.ok(reminders);

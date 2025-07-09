@@ -2,23 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lhd.tams.module.user.dao.UserMapper">
     <select id="selectByUsername" resultType="com.lhd.tams.module.user.model.data.UserDO">
-        SELECT id, username, password, email, role, avatar_url as avatarUrl FROM `user` WHERE username = #{username}
+        SELECT * FROM `user` WHERE username = #{username}
     </select>
 
     <insert id="insert" parameterType="com.lhd.tams.module.user.model.data.UserDO">
-        INSERT INTO `user` (username, password, email, role, in_site, email_reminder, avatar_url)
-        VALUES (#{username}, #{password}, #{email}, #{role}, #{inSite}, #{emailReminder}, #{avatarUrl})
+        INSERT INTO `user` (username, password, email, role, in_site, email_reminder)
+        VALUES (#{username}, #{password}, #{email}, #{role}, #{inSite}, #{emailReminder})
     </insert>
 
     <update id="updateUserInfo" parameterType="com.lhd.tams.module.user.model.data.UserDO">
         UPDATE `user`
-        <set>
-            <if test="password != null and password != ''">password = #{password},</if>
-            <if test="email != null and email != ''">email = #{email},</if>
-            <if test="avatarUrl != null and avatarUrl != ''">avatar_url = #{avatarUrl},</if>
+        SET
+            <if test="password != null">password = #{password},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="avatarUrl != null">avatar_url = #{avatarUrl},</if>
             <if test="inSite != null">in_site = #{inSite},</if>
             <if test="emailReminder != null">email_reminder = #{emailReminder},</if>
-        </set>
+        username = username
         WHERE username = #{username}
     </update>
 

@@ -19,7 +19,7 @@ public interface MessageService {
     /**
      * 更新用户提醒设置
      */
-    void updateReminderSettings(String username, ReminderSettingsDTO settings);
+    void updateReminderSettings(ReminderSettingsDTO settings);
     
     /**
      * 获取即将到来的课程提醒

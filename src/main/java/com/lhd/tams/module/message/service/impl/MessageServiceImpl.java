@@ -1,6 +1,10 @@
 package com.lhd.tams.module.message.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lhd.tams.common.exception.BusinessException;
+import com.lhd.tams.module.classroom.dao.ClassroomMapper;
+import com.lhd.tams.module.classroom.model.data.ClassroomDO;
+import com.lhd.tams.module.course.dao.CourseMapper;
 import com.lhd.tams.module.course.model.data.CourseDO;
 import com.lhd.tams.module.coursescheduling.dao.CourseSchedulingMapper;
 import com.lhd.tams.module.coursescheduling.model.data.CourseSchedulingDO;
@@ -12,6 +16,7 @@ import com.lhd.tams.module.message.model.vo.UpcomingReminderVO;
 import com.lhd.tams.module.message.service.MessageService;
 import com.lhd.tams.module.user.dao.UserMapper;
 import com.lhd.tams.module.user.model.data.UserDO;
+import com.lhd.tams.module.message.service.EmailService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -26,11 +31,20 @@ public class MessageServiceImpl implements MessageService {
     private final MessageMapper messageMapper;
     private final UserMapper userMapper;
     private final CourseSchedulingMapper courseSchedulingMapper;
+    private final CourseMapper courseMapper;
+    private final ClassroomMapper classroomMapper;
+    private final EmailService emailService;
 
-    public MessageServiceImpl(MessageMapper messageMapper, UserMapper userMapper, CourseSchedulingMapper courseSchedulingMapper) {
+    public MessageServiceImpl(MessageMapper messageMapper, UserMapper userMapper, 
+                            CourseSchedulingMapper courseSchedulingMapper, 
+                            CourseMapper courseMapper, ClassroomMapper classroomMapper,
+                            EmailService emailService) {
         this.messageMapper = messageMapper;
         this.userMapper = userMapper;
         this.courseSchedulingMapper = courseSchedulingMapper;
+        this.courseMapper = courseMapper;
+        this.classroomMapper = classroomMapper;
+        this.emailService = emailService;
     }
 
     @Override
@@ -59,12 +73,12 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public void updateReminderSettings(String username, ReminderSettingsDTO settings) {
+    public void updateReminderSettings(ReminderSettingsDTO settings) {
         if (settings.getInSite() == null || settings.getEmail() == null) {
             throw new BusinessException("提醒设置参数不能为空");
         }
         
-        int result = userMapper.updateReminderSettings(username, settings.getInSite(), settings.getEmail());
+        int result = userMapper.updateReminderSettings(settings.getUsername(), settings.getInSite(), settings.getEmail());
         if (result == 0) {
             throw new BusinessException("用户不存在或更新失败");
         }
@@ -72,34 +86,47 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public List<UpcomingReminderVO> getUpcomingReminders(String username) {
-        List<UpcomingReminderVO> reminders = new ArrayList<>();
+        List<UpcomingReminderVO> result = new ArrayList<>();
         
-        // 获取当前时间
+        // 1. 查找用户
+        UserDO user = userMapper.selectByUsername(username);
+        if (user == null) return result;
+
+        // 2. 查找30分钟后即将开始的课程（基于教师ID）
         LocalDateTime now = LocalDateTime.now();
-        LocalDate today = now.toLocalDate();
-        LocalTime currentTime = now.toLocalTime();
+        LocalDateTime thirtyMinutesLater = now.plusMinutes(30);
         
-        // 获取今天的课程调度
-        // 注意：这里需要根据实际的业务逻辑来查询用户的课程
-        // 由于没有用户与课程的关联关系，这里提供一个示例实现
+        QueryWrapper<CourseSchedulingDO> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("teacher_id", user.getId())
+                   .eq("date", now.toLocalDate())
+                   .ge("attend_time", now.toLocalTime())
+                   .le("attend_time", thirtyMinutesLater.toLocalTime());
         
-        // 示例：生成未来30分钟内的课程提醒
-        LocalDateTime reminderTime = now.plusMinutes(30);
+        List<CourseSchedulingDO> upcomingCourses = courseSchedulingMapper.selectList(queryWrapper);
         
-        UpcomingReminderVO reminder = new UpcomingReminderVO();
-        reminder.setId(1L);
-        reminder.setMessage("30分钟后在学武楼A101教室有数学课程。");
-        reminder.setRemindTime(reminderTime);
-        reminders.add(reminder);
+        for (CourseSchedulingDO course : upcomingCourses) {
+            // 3. 获取课程和教室信息
+            CourseDO courseInfo = courseMapper.selectById(course.getCourseId());
+            ClassroomDO classroomInfo = classroomMapper.selectById(course.getClassroomId());
+            
+            if (courseInfo != null && classroomInfo != null) {
+                // 4. 拼接提醒内容
+                String message = String.format("30分钟后在%s教室有%s课程。", 
+                    classroomInfo.getName(), courseInfo.getName());
+
+                // 5. 发送邮件
+                if (user.getEmail() != null && user.getEmailReminder() != null && user.getEmailReminder()) {
+                    emailService.sendMail(user.getEmail(), "课程提醒", message);
+                }
+
+                // 6. 返回响应
+                UpcomingReminderVO vo = new UpcomingReminderVO();
+                vo.setMessage(message);
+                vo.setRemindTime(course.getDate().atTime(course.getAttendTime()));
+                result.add(vo);
+            }
+        }
         
-        // 示例：生成未来2小时内的课程提醒
-        LocalDateTime reminderTime2 = now.plusHours(2);
-        UpcomingReminderVO reminder2 = new UpcomingReminderVO();
-        reminder2.setId(2L);
-        reminder2.setMessage("2小时后在图书馆B201教室有英语课程。");
-        reminder2.setRemindTime(reminderTime2);
-        reminders.add(reminder2);
-        
-        return reminders;
+        return result;
     }
 }

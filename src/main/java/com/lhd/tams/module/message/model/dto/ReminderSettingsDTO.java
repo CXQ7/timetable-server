@@ -7,6 +7,7 @@ import lombok.Data;
  */
 @Data
 public class ReminderSettingsDTO {
+    private String username;
     /**
      * 是否开启站内提醒
      */

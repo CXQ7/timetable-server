@@ -28,5 +28,5 @@ tams:
 
 # JWT 配置
 jwt:
-  secret-key: x7H$2pL9&qW8zRvE1tY6uIoP3aS5dFgHjK4lMnBvCxZ  # 生产环境密钥
+  secret-key: Q2hpbmFfU2VjcmV0X0tleV9Gb3JfSlcudGVzdF9iYXNlNjQ=  # 生产环境密钥
   expiration-time: 864000000  # Token 过期时间（毫秒），10 天

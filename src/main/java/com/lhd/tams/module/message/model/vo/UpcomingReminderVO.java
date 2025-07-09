@@ -9,10 +9,7 @@ import java.time.LocalDateTime;
  */
 @Data
 public class UpcomingReminderVO {
-    /**
-     * 提醒ID
-     */
-    private Long id;
+ 
     
     /**
      * 提醒消息
