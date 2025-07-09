@@ -262,10 +262,7 @@ public class CourseSchedulingController extends BaseController {
             return Result.error("Excel中未读取到有效数据");
         }
 
-        System.out.println("读取到数据："+dataList);
-        for (CourseSchedulingImportDTO data : dataList){
-            System.out.println( data);
-        }
+        // 处理解析结果
 
         // 调用业务层处理导入数据
      //   boolean importResult = courseSchedulingExcelManager.importExcelData(dataList, param);

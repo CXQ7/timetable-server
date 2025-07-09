@@ -65,9 +65,7 @@ public class import_excel {
                 return ResponseEntity.badRequest().body(ApiResult.error("Excel中未读取到有效数据"));
             }
 
-            // 打印解析结果（仅调试用）
-            System.out.println("读取到" + dataList.size() + "条数据：");
-            dataList.forEach(System.out::println);
+            // 解析Excel数据
             for(int i=0;i<dataList.size();i++){
 
                 CourseSchedulingSaveDTO saveDTO = new CourseSchedulingSaveDTO();

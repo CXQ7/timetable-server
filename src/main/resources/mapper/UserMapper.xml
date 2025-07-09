@@ -6,8 +6,8 @@
     </select>
 
     <insert id="insert" parameterType="com.lhd.tams.module.user.model.data.UserDO">
-        INSERT INTO `user` (username, password, email, role, in_site, email_reminder)
-        VALUES (#{username}, #{password}, #{email}, #{role}, #{inSite}, #{emailReminder})
+        INSERT INTO `user` (username, password, email, role, avatar_url, in_site, email_reminder)
+        VALUES (#{username}, #{password}, #{email}, #{role}, #{avatarUrl}, #{inSite}, #{emailReminder})
     </insert>
 
     <update id="updateUserInfo" parameterType="com.lhd.tams.module.user.model.data.UserDO">
@@ -17,8 +17,7 @@
             <if test="email != null">email = #{email},</if>
             <if test="avatarUrl != null">avatar_url = #{avatarUrl},</if>
             <if test="inSite != null">in_site = #{inSite},</if>
-            <if test="emailReminder != null">email_reminder = #{emailReminder},</if>
-        username = username
+            <if test="emailReminder != null">email_reminder = #{emailReminder}</if>
         WHERE username = #{username}
     </update>
 

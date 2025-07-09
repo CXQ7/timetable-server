@@ -1,7 +1,7 @@
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/tams?useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/tams?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: root
     password: "@Abc12345"
     driver-class-name: com.mysql.cj.jdbc.Driver
