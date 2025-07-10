@@ -122,7 +122,7 @@ public class MessageServiceImpl implements MessageService {
                 // 6. 返回响应
                 UpcomingReminderVO vo = new UpcomingReminderVO();
                 vo.setMessage(message);
-                vo.setRemindTime(course.getDate().atTime(course.getAttendTime()));
+                vo.setRemindTime(course.getDate().atTime(course.getAttendTime()).minusMinutes(30));
                 result.add(vo);
             }
         }
