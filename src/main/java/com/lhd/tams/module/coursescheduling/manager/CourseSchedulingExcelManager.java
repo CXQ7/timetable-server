@@ -34,17 +34,17 @@ import java.util.Map;
 @Component
 public class CourseSchedulingExcelManager {
 
-    private static final String FONT_NAME = "等线";
+    private static final String FONT_NAME = "微软雅黑";
     private static final Map<DayOfWeek, String> DAY_OF_WEEK_STRING_MAP;
     static {
         DAY_OF_WEEK_STRING_MAP = new HashMap<>();
-        DAY_OF_WEEK_STRING_MAP.put(DayOfWeek.MONDAY, "星期一");
-        DAY_OF_WEEK_STRING_MAP.put(DayOfWeek.TUESDAY, "星期二");
-        DAY_OF_WEEK_STRING_MAP.put(DayOfWeek.WEDNESDAY, "星期三");
-        DAY_OF_WEEK_STRING_MAP.put(DayOfWeek.THURSDAY, "星期四");
-        DAY_OF_WEEK_STRING_MAP.put(DayOfWeek.FRIDAY, "星期五");
-        DAY_OF_WEEK_STRING_MAP.put(DayOfWeek.SATURDAY, "星期六");
-        DAY_OF_WEEK_STRING_MAP.put(DayOfWeek.SUNDAY, "星期日");
+        DAY_OF_WEEK_STRING_MAP.put(DayOfWeek.MONDAY, "周一");
+        DAY_OF_WEEK_STRING_MAP.put(DayOfWeek.TUESDAY, "周二");
+        DAY_OF_WEEK_STRING_MAP.put(DayOfWeek.WEDNESDAY, "周三");
+        DAY_OF_WEEK_STRING_MAP.put(DayOfWeek.THURSDAY, "周四");
+        DAY_OF_WEEK_STRING_MAP.put(DayOfWeek.FRIDAY, "周五");
+        DAY_OF_WEEK_STRING_MAP.put(DayOfWeek.SATURDAY, "周六");
+        DAY_OF_WEEK_STRING_MAP.put(DayOfWeek.SUNDAY, "周日");
     }
 
     @Autowired
@@ -265,22 +265,21 @@ public class CourseSchedulingExcelManager {
             cellStyle.setAlignment(HorizontalAlignment.CENTER);
             cellStyle.setWrapText(true);
 
-            if (StrUtil.isNotEmpty(vo.getBackgroundColor())) {
-                XSSFColor xssfColor = new XSSFColor(java.awt.Color.decode(vo.getBackgroundColor()) , new DefaultIndexedColorMap());
-                cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-                ((XSSFCellStyle) cellStyle).setFillForegroundColor(xssfColor);
-            }
+            XSSFColor uniformColor = new XSSFColor(new java.awt.Color(220, 230, 242), new DefaultIndexedColorMap());
+            cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            ((XSSFCellStyle) cellStyle).setFillForegroundColor(uniformColor);
 
             setBorderStyle(cellStyle, BorderStyle.THIN, IndexedColors.GREY_25_PERCENT);
 
             Font courseFont = workbook.createFont();
-            courseFont.setFontName(FONT_NAME);
-            courseFont.setFontHeightInPoints((short) 16);
-            courseFont.setColor(IndexedColors.WHITE.index);
+            courseFont.setFontName(FONT_NAME); // 使用全局字体常量
+            courseFont.setFontHeightInPoints((short) 14); // 原16号，可调整
+            courseFont.setColor(IndexedColors.DARK_BLUE.index); // 字体颜色（深蓝）
+
             Font otherFont = workbook.createFont();
             otherFont.setFontName(FONT_NAME);
-            otherFont.setFontHeightInPoints((short) 12);
-            otherFont.setColor(IndexedColors.WHITE.index);
+            otherFont.setFontHeightInPoints((short) 12); // 原12号，可调整
+            otherFont.setColor(IndexedColors.DARK_BLUE.index); // 与课程名称同色
 
             String course = vo.getCourseName();
             String otherInfo = isShowClassroom ? String.format("%s %s", vo.getClassroomName(), vo.getTeacherName()) : vo.getTeacherName();

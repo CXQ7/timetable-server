@@ -40,16 +40,13 @@ public class CourseSchedulingSaveDTO {
 
     @Schema(description = "备注")
     private String remarks;
-<<<<<<< HEAD
     public String getRemarks() {
         return remarks;
     }
-
     public void setRemarks(String remarks) {
         this.remarks = remarks;
-=======
+    }
     
     @Schema(description = "用户名")
     private String username;
->>>>>>> a29bbea20041a3e0dc29e64bf68cdf2d5b6f0580
 }
