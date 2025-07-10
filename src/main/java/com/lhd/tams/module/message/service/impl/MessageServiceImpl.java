@@ -97,7 +97,7 @@ public class MessageServiceImpl implements MessageService {
         LocalDateTime thirtyMinutesLater = now.plusMinutes(30);
         
         QueryWrapper<CourseSchedulingDO> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("teacher_id", user.getId())
+        queryWrapper.eq("username", user.getUsername())
                    .eq("date", now.toLocalDate())
                    .ge("attend_time", now.toLocalTime())
                    .le("attend_time", thirtyMinutesLater.toLocalTime());
