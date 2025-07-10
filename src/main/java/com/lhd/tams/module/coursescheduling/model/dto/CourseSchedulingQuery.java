@@ -35,4 +35,7 @@ public class CourseSchedulingQuery {
 
     @Schema(description = "备注")
     private String remarks;
+    
+    @Schema(description = "用户名")
+    private String username;
 }

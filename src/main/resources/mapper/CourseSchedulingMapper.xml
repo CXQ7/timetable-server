@@ -7,7 +7,7 @@
                cs.course_id courseId, course.name courseName, course.duration, course.background_color backgroundColor,
                cs.teacher_id teacherId, teacher.name teacherName,
                cs.date, cs.attend_time attendTime, cs.finish_time finishTime,
-                cs.remarks remarks
+                cs.remarks remarks, cs.username username
 
     </sql>
 

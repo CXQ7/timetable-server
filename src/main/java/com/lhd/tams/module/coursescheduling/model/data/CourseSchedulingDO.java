@@ -48,4 +48,9 @@ public class CourseSchedulingDO {
      * 备注
      */
     private String remarks;
+    
+    /**
+     * 用户名
+     */
+    private String username;
 }

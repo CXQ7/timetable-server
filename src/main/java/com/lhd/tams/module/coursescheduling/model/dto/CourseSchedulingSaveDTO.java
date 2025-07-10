@@ -39,4 +39,7 @@ public class CourseSchedulingSaveDTO {
     private LocalTime finishTime;
 
     private String remarks;
+    
+    @Schema(description = "用户名")
+    private String username;
 }
