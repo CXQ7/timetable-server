@@ -44,6 +44,7 @@ public class import_excel {
     @PostMapping("import")
     public ResponseEntity<ApiResult<?>> importExcel(
             @RequestParam("file") MultipartFile file,
+            @RequestParam("username") String username,
             @Validated CourseSchedulingController.CourseSchedulingImportParam param) throws IOException {
 
 
@@ -65,9 +66,7 @@ public class import_excel {
                 return ResponseEntity.badRequest().body(ApiResult.error("Excel中未读取到有效数据"));
             }
 
-            // 打印解析结果（仅调试用）
-            System.out.println("读取到" + dataList.size() + "条数据：");
-            dataList.forEach(System.out::println);
+            // 解析Excel数据
             for(int i=0;i<dataList.size();i++){
 
                 CourseSchedulingSaveDTO saveDTO = new CourseSchedulingSaveDTO();
@@ -106,6 +105,10 @@ public class import_excel {
                 saveDTO.setAttendTime(attendTime);
                 LocalTime getEndTime = LocalTime.parse(dataList.get(i).getEndTime(), TIME_FORMATTER);
                 saveDTO.setFinishTime(getEndTime);
+                
+                // 设置用户名，从前端FormData中获取
+                saveDTO.setUsername(username);
+                
                 courseSchedulingService.saveCourseScheduling(saveDTO);
 
             }

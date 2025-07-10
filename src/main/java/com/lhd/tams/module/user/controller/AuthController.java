@@ -84,11 +84,6 @@ public class AuthController {
     @PutMapping("/user/update/{username}")
     public ApiResult<UserDO> updateUserInfo(@PathVariable String username, @RequestBody UpdateUserInfoDTO updateDTO) {
         try {
-            System.out.println("收到更新请求，用户名: " + username);
-            System.out.println("更新数据: password=" + updateDTO.getPassword() + 
-                             ", email=" + updateDTO.getEmail() + 
-                             ", avatarBase64=" + (updateDTO.getAvatarBase64() != null ? "有avatarBase64数据" : "无avatarBase64数据") +
-                             ", avatarUrl=" + (updateDTO.getAvatarUrl() != null ? "有avatarUrl数据" : "无avatarUrl数据"));
             
             UserDO user = userService.getUserByUsername(username);
             if (user == null) {
@@ -110,10 +105,8 @@ public class AuthController {
             String avatarData = null;
             if (updateDTO.getAvatarBase64() != null && !updateDTO.getAvatarBase64().trim().isEmpty()) {
                 avatarData = updateDTO.getAvatarBase64().trim();
-                System.out.println("使用avatarBase64字段，数据长度: " + avatarData.length());
             } else if (updateDTO.getAvatarUrl() != null && !updateDTO.getAvatarUrl().trim().isEmpty()) {
                 avatarData = updateDTO.getAvatarUrl().trim();
-                System.out.println("使用avatarUrl字段，数据长度: " + avatarData.length());
             }
             
             if (avatarData != null) {
@@ -121,7 +114,6 @@ public class AuthController {
                 if (isValidBase64Image(avatarData)) {
                     user.setAvatarUrl(avatarData);
                     hasUpdate = true;
-                    System.out.println("设置头像Base64数据成功");
                 } else {
                     return ApiResult.error("无效的图片格式，请上传有效的图片");
                 }
@@ -135,11 +127,8 @@ public class AuthController {
             
             // 返回更新后的用户信息
             UserDO updatedUser = userService.getUserByUsername(username);
-            System.out.println("更新后的用户信息: 头像数据长度=" + 
-                             (updatedUser.getAvatarUrl() != null ? updatedUser.getAvatarUrl().length() : 0));
             return ApiResult.success("用户信息更新成功", updatedUser);
         } catch (Exception e) {
-            e.printStackTrace();
             // 特殊处理数据库字段长度错误
             if (e.getMessage() != null && e.getMessage().contains("Data too long for column")) {
                 return ApiResult.error("头像数据过大，请上传较小的图片或联系管理员修改数据库字段长度");

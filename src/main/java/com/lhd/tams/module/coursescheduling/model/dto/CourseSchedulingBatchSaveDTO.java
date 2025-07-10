@@ -44,4 +44,7 @@ public class CourseSchedulingBatchSaveDTO {
     @NotEmpty
     @Schema(description = "周几上课列表")
     private List<Integer> weekList;
+    
+    @Schema(description = "用户名")
+    private String username;
 }
