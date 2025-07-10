@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(100) NOT NULL,
   `email` varchar(100),
   `role` varchar(20) DEFAULT 'STUDENT',
+  `avatar_url` LONGTEXT,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_username` (`username`)
 );
