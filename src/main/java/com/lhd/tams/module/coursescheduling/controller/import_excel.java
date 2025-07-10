@@ -44,6 +44,7 @@ public class import_excel {
     @PostMapping("import")
     public ResponseEntity<ApiResult<?>> importExcel(
             @RequestParam("file") MultipartFile file,
+            @RequestParam("username") String username,
             @Validated CourseSchedulingController.CourseSchedulingImportParam param) throws IOException {
 
 
@@ -104,6 +105,10 @@ public class import_excel {
                 saveDTO.setAttendTime(attendTime);
                 LocalTime getEndTime = LocalTime.parse(dataList.get(i).getEndTime(), TIME_FORMATTER);
                 saveDTO.setFinishTime(getEndTime);
+                
+                // 设置用户名，从前端FormData中获取
+                saveDTO.setUsername(username);
+                
                 courseSchedulingService.saveCourseScheduling(saveDTO);
 
             }
