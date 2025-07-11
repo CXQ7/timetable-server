@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: tams
+    name: jvav-timetable
   profiles:
     active: @profileActive@
   jackson:
@@ -17,7 +17,7 @@ mybatis-plus:
       logic-delete-value: 1
       logic-not-delete-value: 0
     banner: false
-  type-aliases-package: com.lhd.tams.**.model
+  type-aliases-package: com.jvav.timetable.**.model
 
 
 

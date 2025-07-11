@@ -31,15 +31,15 @@ spring:
 
 logging:
   level:
-    com.lhd.tams: debug
+    com.jvav.timetable: debug
 
 springdoc:
   api-docs:
     enabled: true
 
-tams:
+jvav:
   logging:
-    path: ./logs/tams/logs
+    path: ./logs/jvav/logs
 
     # 新增 JWT 配置
 jwt:

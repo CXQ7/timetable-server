@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lhd.tams.module.coursescheduling.dao.CourseSchedulingMapper">
+<mapper namespace="com.jvav.timetable.module.coursescheduling.dao.CourseSchedulingMapper">
 
     <sql id="column">
                cs.id, cs.classroom_id classroomId, classroom.name classroomName,
@@ -92,7 +92,7 @@
         order by count desc;
     </select>
 
-    <insert id="insertCourseScheduling" parameterType="com.lhd.tams.module.coursescheduling.model.data.CourseSchedulingDO">
+    <insert id="insertCourseScheduling" parameterType="com.jvav.timetable.module.coursescheduling.model.data.CourseSchedulingDO">
         INSERT INTO courseScheduling (
         classroom_id,
         course_id,
@@ -113,7 +113,7 @@
     </insert>
 
 
-    <update id="updateCourseScheduling" parameterType="com.lhd.tams.module.coursescheduling.model.data.CourseSchedulingDO">
+    <update id="updateCourseScheduling" parameterType="com.jvav.timetable.module.coursescheduling.model.data.CourseSchedulingDO">
         UPDATE courseScheduling
         SET classroom_id = #{classroomId},
         course_id = #{courseId},

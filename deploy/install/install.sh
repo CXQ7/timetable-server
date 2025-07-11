@@ -1,6 +1,6 @@
 #!/bin/bash
 
-appName="tams"
+appName="jvav-timetable"
 appBasePath=/home/${appName}
 
 create_dir_and_copy() {

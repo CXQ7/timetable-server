@@ -1,5 +1,5 @@
 set character set utf8mb4;
-create table t_classroom
+create table classroom
 (
 	id bigint auto_increment
 		primary key,
@@ -8,16 +8,7 @@ create table t_classroom
 )
 comment '教室';
 
-create table t_color
-(
-	id bigint auto_increment comment 'id'
-		primary key,
-	name varchar(30) default '' not null comment '名称',
-	value char(7) default '' not null comment '值'
-)
-comment '颜色';
-
-create table t_course
+create table course
 (
 	id bigint auto_increment comment 'id'
 		primary key,
@@ -28,7 +19,7 @@ create table t_course
 )
 comment '课程';
 
-create table t_course_scheduling
+create table courseScheduling
 (
 	id bigint auto_increment comment 'id'
 		primary key,
@@ -41,15 +32,7 @@ create table t_course_scheduling
 )
 comment '排课';
 
-create table t_school
-(
-	id bigint auto_increment comment 'id'
-		primary key,
-	名称 varchar(50) default '' not null comment '名称'
-)
-comment '学校';
-
-create table t_teacher
+create table teacher
 (
 	id bigint auto_increment comment 'id'
 		primary key,

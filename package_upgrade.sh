@@ -2,7 +2,7 @@
 # $1 模式，1后端 2前端 其他值为全部
 
 workdir=$(cd $(dirname $0); pwd)
-appName="tams"
+appName="jvav-timetable"
 
 function backend_package() {
   mvn -f ${workdir} clean package -Dmaven.test.skip=true -Pprod

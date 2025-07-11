@@ -8,10 +8,10 @@
         <version>3.0.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.lhd.tams</groupId>
-    <artifactId>tams-server</artifactId>
+    <groupId>com.jvav.timetable</groupId>
+    <artifactId>jvav-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>tams</name>
+    <name>jvav-timetable</name>
     <description>教务管理</description>
 
     <profiles>

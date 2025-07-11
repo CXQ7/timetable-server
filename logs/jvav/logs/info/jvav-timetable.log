@@ -1,0 +1,13 @@
+2025-07-12 03:05:19.816 Version.<clinit>:21 - HV000001: Hibernate Validator 8.0.0.Final
+2025-07-12 03:05:19.873 StartupInfoLogger.logStarting:51 - Starting JvavTimetableApp v0.0.1-SNAPSHOT using Java 17.0.0.1 with PID 26440 (E:\two\course\java2\timetable-server\target\jvav-server-0.0.1-SNAPSHOT.jar started by ASUS in E:\two\course\java2\timetable-server)
+2025-07-12 03:05:19.875 SpringApplication.logStartupProfileInfo:638 - The following 1 profile is active: "dev"
+2025-07-12 03:05:21.481 TomcatWebServer.initialize:108 - Tomcat initialized with port(s): 12010 (http)
+2025-07-12 03:05:21.491 DirectJDKLog.log:173 - Initializing ProtocolHandler ["http-nio-12010"]
+2025-07-12 03:05:21.492 DirectJDKLog.log:173 - Starting service [Tomcat]
+2025-07-12 03:05:21.493 DirectJDKLog.log:173 - Starting Servlet engine: [Apache Tomcat/10.1.8]
+2025-07-12 03:05:21.619 DirectJDKLog.log:173 - Initializing Spring embedded WebApplicationContext
+2025-07-12 03:05:21.620 ServletWebServerApplicationContext.prepareWebApplicationContext:291 - Root WebApplicationContext: initialization completed in 1672 ms
+2025-07-12 03:05:23.472 HikariDataSource.getConnection:110 - HikariPool-1 - Starting...
+2025-07-12 03:05:24.967 DirectJDKLog.log:173 - Starting ProtocolHandler ["http-nio-12010"]
+2025-07-12 03:05:25.001 TomcatWebServer.start:220 - Tomcat started on port(s): 12010 (http) with context path ''
+2025-07-12 03:05:25.022 StartupInfoLogger.logStarted:57 - Started JvavTimetableApp in 5.855 seconds (process running for 6.416)

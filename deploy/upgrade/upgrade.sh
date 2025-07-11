@@ -1,6 +1,6 @@
 #!/bin/bash
 
-appName="tams"
+appName="jvav-timetable"
 
 if [ -f *.jar ]; then
   echo "**********正在升级后端服务，请耐心等待**********"

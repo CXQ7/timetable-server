@@ -1,6 +1,6 @@
 #!/bin/bash
 
-appName="tams"
+appName="jvav-timetable"
 
 docker-compose -p $appName down
 docker rmi ${appName}-server
