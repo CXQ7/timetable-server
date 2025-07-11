@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
-@TableName("calendar_settings")
+@TableName("calendarSettings")
 public class CalendarSettingsDO {
     @TableId(type = IdType.AUTO)
     private Long id;
