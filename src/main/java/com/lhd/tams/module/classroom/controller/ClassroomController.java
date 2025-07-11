@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * @author lhd
- */
 @Tag(name = "教室")
 @RequestMapping("classroom")
 @RestController

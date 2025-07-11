@@ -27,9 +27,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author lhd
- */
 @Slf4j
 @Component
 public class CourseSchedulingExcelManager {

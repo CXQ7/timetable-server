@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Data
-@TableName("t_course_scheduling")
+@TableName("courseScheduling")
 public class CourseSchedulingDO {
 
     @TableId(value = "id", type = IdType.AUTO)

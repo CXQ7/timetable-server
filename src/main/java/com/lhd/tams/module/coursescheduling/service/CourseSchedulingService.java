@@ -10,9 +10,7 @@ import com.lhd.tams.module.coursescheduling.model.vo.CourseSchedulingReportVO;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author lhd
- */
+
 public interface CourseSchedulingService {
 
     /**

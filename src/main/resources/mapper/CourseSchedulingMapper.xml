@@ -14,10 +14,10 @@
     <select id="selectCourseSchedulingList" resultType="CourseSchedulingListVO">
         select
         <include refid="column"></include>
-        from t_course_scheduling cs
-        left join t_classroom classroom on cs.classroom_id = classroom.id
-        left join t_course course on cs.course_id = course.id
-        left join t_teacher teacher on cs.teacher_id = teacher.id
+        from courseScheduling cs
+        left join classroom classroom on cs.classroom_id = classroom.id
+        left join course course on cs.course_id = course.id
+        left join teacher teacher on cs.teacher_id = teacher.id
         where 1=1
         <if test="ew.sqlSegment != ''">
             and ${ew.sqlSegment}
@@ -27,16 +27,16 @@
     <select id="selectCourseSchedulingById" resultType="CourseSchedulingListVO">
         select
         <include refid="column"></include>
-        from t_course_scheduling cs
-        left join t_classroom classroom on cs.classroom_id = classroom.id
-        left join t_course course on cs.course_id = course.id
-        left join t_teacher teacher on cs.teacher_id = teacher.id
+        from courseScheduling cs
+        left join classroom classroom on cs.classroom_id = classroom.id
+        left join course course on cs.course_id = course.id
+        left join teacher teacher on cs.teacher_id = teacher.id
         where cs.id = #{id}
     </select>
 
     <select id="selectCourseSchedulingCourseCount" resultType="map">
         select date, count(id) count
-        from t_course_scheduling
+        from courseScheduling
         where 1=1
         <if test="ew.sqlSegment != ''">
             and ${ew.sqlSegment}
@@ -45,7 +45,7 @@
 
     <select id="selectTimePeriodByDateRange" resultType="string">
         select concat(date_format(attend_time, '%H:%i'), '-', date_format(finish_time, '%H:%i')) time
-        from t_course_scheduling
+        from courseScheduling
         where date in
         <foreach item="item" collection="dateList" separator="," open="(" close=")">
             #{item}
@@ -63,10 +63,10 @@
                classroom.name classroomName,
                course.name courseName, course.background_color backgroundColor,
                teacher.name teacherName
-        from t_course_scheduling cs
-                 left join t_classroom classroom on cs.classroom_id = classroom.id
-                 left join t_course course on cs.course_id = course.id
-                 left join t_teacher teacher on cs.teacher_id = teacher.id
+        from courseScheduling cs
+                 left join classroom classroom on cs.classroom_id = classroom.id
+                 left join course course on cs.course_id = course.id
+                 left join teacher teacher on cs.teacher_id = teacher.id
         where date between #{startDate} and #{endDate}
         <if test="classroomId != null">
             and cs.classroom_id = #{classroomId}
@@ -76,8 +76,8 @@
 
     <select id="selectReportTeacherCount" resultType="CourseSchedulingReportVO">
         select teacher.id, teacher.name, count(cs.id) count
-        from t_teacher teacher
-        left join t_course_scheduling cs on teacher.id = cs.teacher_id
+        from teacher teacher
+        left join courseScheduling cs on teacher.id = cs.teacher_id
             and cs.date between #{startDate} and #{endDate}
         group by teacher.id, teacher.name
         order by count desc;
@@ -85,15 +85,15 @@
 
     <select id="selectReportCourseCount" resultType="CourseSchedulingReportVO">
         select course.id, course.name, course.background_color color, count(cs.id) count
-        from t_course course
-        left join t_course_scheduling cs on course.id = cs.course_id
+        from course course
+        left join courseScheduling cs on course.id = cs.course_id
             and cs.date between #{startDate} and #{endDate}
         group by course.id, course.name
         order by count desc;
     </select>
 
     <insert id="insertCourseScheduling" parameterType="com.lhd.tams.module.coursescheduling.model.data.CourseSchedulingDO">
-        INSERT INTO t_course_scheduling (
+        INSERT INTO courseScheduling (
         classroom_id,
         course_id,
         teacher_id,
@@ -114,7 +114,7 @@
 
 
     <update id="updateCourseScheduling" parameterType="com.lhd.tams.module.coursescheduling.model.data.CourseSchedulingDO">
-        UPDATE t_course_scheduling
+        UPDATE courseScheduling
         SET classroom_id = #{classroomId},
         course_id = #{courseId},
         teacher_id = #{teacherId},

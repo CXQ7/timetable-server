@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * @author lhd
- */
 @Tag(name = "报表")
 @RequestMapping("report")
 @RestController

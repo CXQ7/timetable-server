@@ -5,9 +5,6 @@ import lombok.Data;
 
 import java.util.List;
 
-/**
- * @author lhd
- */
 @Data
 @Schema(description = "排课查询参数")
 public class CourseSchedulingQuery {

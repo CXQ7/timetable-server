@@ -24,11 +24,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * json 工具
- *
- * @author lhd
- */
 public class JacksonUtils {
 
     private static final Logger log = LoggerFactory.getLogger(JacksonUtils.class);

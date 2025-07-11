@@ -7,9 +7,6 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * @author lhd
- */
 @Configuration
 @MapperScan("com.lhd.tams.**.dao")
 public class MybatisPlusConfig {

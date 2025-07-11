@@ -6,7 +6,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * springmvc配置
- * @author lhd
  */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {

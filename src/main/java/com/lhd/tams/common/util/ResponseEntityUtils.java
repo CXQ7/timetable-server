@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 
 /**
  * HTTP响应结果构建器，HTTP状态码+接口返回值结构
- * @author lhd
  */
 public class ResponseEntityUtils {
 

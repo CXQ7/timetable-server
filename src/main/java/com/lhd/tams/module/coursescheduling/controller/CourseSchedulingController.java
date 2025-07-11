@@ -28,9 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author lhd
- */
 @Tag(name = "排课")
 @RequestMapping("course-scheduling")
 @RestController

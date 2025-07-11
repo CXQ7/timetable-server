@@ -4,9 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-/**
- * @author lhd
- */
+
 @Schema(description = "排课修改参数")
 @Data
 public class CourseSchedulingUpdateDTO {

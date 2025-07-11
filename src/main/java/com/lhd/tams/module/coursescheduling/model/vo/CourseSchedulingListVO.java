@@ -6,9 +6,7 @@ import lombok.Data;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-/**
- * @author lhd
- */
+
 @Schema(description = "排课列表返回结果")
 @Data
 public class CourseSchedulingListVO {

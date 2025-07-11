@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * @author lhd
- */
+
 @Tag(name = "教师")
 @RequestMapping("teacher")
 @RestController

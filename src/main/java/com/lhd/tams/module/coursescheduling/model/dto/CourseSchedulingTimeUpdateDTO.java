@@ -7,9 +7,6 @@ import lombok.Data;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-/**
- * @author lhd
- */
 @Schema(description = "排课时间修改参数")
 @Data
 public class CourseSchedulingTimeUpdateDTO {

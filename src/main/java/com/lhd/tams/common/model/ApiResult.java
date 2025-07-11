@@ -3,7 +3,6 @@ package com.lhd.tams.common.model;
 /**
  * 接口返回值结构
  * @param <T>
- * @author lhd
  */
 public class ApiResult<T> {
 

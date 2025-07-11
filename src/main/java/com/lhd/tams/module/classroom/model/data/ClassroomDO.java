@@ -5,11 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-/**
- * @author lhd
- */
 @Data
-@TableName("t_classroom")
+@TableName("classroom")
 public class ClassroomDO {
 
     @TableId(value = "id", type = IdType.AUTO)

@@ -2,7 +2,6 @@ package com.lhd.tams.common.consts;
 
 /**
  * sheet命名方式
- * @author lhd
  */
 public enum SheetNaingTypeEnum {
 

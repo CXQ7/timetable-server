@@ -22,9 +22,6 @@ import java.nio.file.AccessDeniedException;
 import java.sql.DataTruncation;
 import java.sql.SQLException;
 
-/**
- * @author lhd
- */
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {

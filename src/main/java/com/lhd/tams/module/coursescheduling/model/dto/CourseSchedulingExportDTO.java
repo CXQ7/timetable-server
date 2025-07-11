@@ -4,9 +4,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-/**
- * @author lhd
- */
 @Schema(description = "排课导出参数")
 @Data
 public class CourseSchedulingExportDTO {

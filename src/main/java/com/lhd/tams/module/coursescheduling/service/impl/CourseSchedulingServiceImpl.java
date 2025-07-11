@@ -24,9 +24,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-/**
- * @author lhd
- */
+
 @Slf4j
 @Service
 public class CourseSchedulingServiceImpl extends ServiceImpl<CourseSchedulingMapper, CourseSchedulingDO> implements CourseSchedulingService {

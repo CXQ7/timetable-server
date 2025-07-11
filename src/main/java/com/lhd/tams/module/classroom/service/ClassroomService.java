@@ -7,9 +7,7 @@ import com.lhd.tams.module.classroom.model.vo.ClassroomListVO;
 
 import java.util.List;
 
-/**
- * @author lhd
- */
+
 public interface ClassroomService {
 
     /**

@@ -3,9 +3,7 @@ package com.lhd.tams.module.coursescheduling.model.vo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-/**
- * @author lhd
- */
+
 @Schema(description = "排课报表返回结果")
 @Data
 public class CourseSchedulingReportVO {

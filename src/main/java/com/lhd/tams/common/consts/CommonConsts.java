@@ -1,9 +1,6 @@
 package com.lhd.tams.common.consts;
 
-/**
- * 通用常量
- * @author lhd
- */
+
 public class CommonConsts {
 
     public static final Integer TRUE_VALUE_INT = 1;

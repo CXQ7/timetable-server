@@ -1,9 +1,5 @@
 package com.lhd.tams.common.consts;
 
-/**
- * 停启用状态
- * @author lhd
- */
 public enum EnableStateEnum {
 
     /**
